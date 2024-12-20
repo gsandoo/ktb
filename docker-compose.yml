@@ -1,0 +1,14 @@
+# 프로젝트 루트 위치에 docker-compose.yml 파일을 만듭니다. 그리고 아래 내용을 적습니다.
+services:
+  wserver:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - jeff-node
+# Node.js 백엔드 서버
+  jeff-node:
+    image: ghcr.io/ej31/jeff-ex:1.3
+    command: ["npm","start"]
+    expose:
+      - "3000"
